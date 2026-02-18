@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Portfolio<span>.</span></div>
+        <nav>
+            <a href="#Home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="Home">
+        <div class="hero-content">
+            <h3>Hello, It's Me</h3>
+            <h1>Shadan Ali</h1>
+            <h3>And I'm a <span class="highlight">Software Developer</span></h3>
+            <p>Crafting high-performance web applications with a focus on elegant UI and efficient algorithms
+            </p>
+
+            <div class="social-icons">
+                <a href="https://www.facebook.com/shadan.ashrafi.73"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://github.com/Shadan0786"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/shadanashrafi"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/shadan-ali"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+
+            <a href="https://drive.google.com/file/d/13UL_vjZ2o92dEUphRrLVCvhlyx-6LdPd/view?usp=sharing"
+                class="btn">Download CV</a>
+        </div>
+
+        <div class="hero-img">
+            <div class="hexagon">
+                <img src="Assets/profile1.png" alt="Profile Picture">
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <div class="hexagon-container">
+                <img src="Assets/profile1.png" alt="About Me Image">
+            </div>
+        </div>
+
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span></h2>
+            <h3>Full Stack Developer!</h3>
+            <p>
+                I am a passionate developer with a strong foundation in creating
+                visually stunning and highly functional websites. With a keen eye for
+                UI/UX design, I bridge the gap between complex backend logic and
+                elegant frontend presentation.
+            </p>
+            <p>
+                My goal is to build digital products that provide seamless user
+                experiences while solving real-world problems. I'm always eager to
+                learn new technologies and stay updated with the latest industry trends.
+            </p>
+
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <h2 class="heading">My <span>Skills</span></h2>
+
+        <div class="skills-row">
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class='bx bxl-html5'></i> <i class="fa-brands fa-html5"></i>
+                    <h3>HTML5</h3>
+
+                </div>
+
+                <div class="skill-card">
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <h3>CSS3</h3>
+
+                </div>
+
+                <div class="skill-card">
+                    <i class="fa-brands fa-js"></i>
+                    <h3>JavaScript</h3>
+
+                </div>
+
+                <div class="skill-card">
+                    <i class="fa-brands fa-python"></i>
+                    <h3>Python</h3>
+
+                </div>
+
+                <div class="skill-card">
+                    <i class="fa-brands fa-react"></i>
+                    <h3>React</h3>
+
+                </div>
+
+                <div class="skill-card">
+                    <i class="fa-brands fa-node-js"></i>
+                    <h3>Node.js</h3>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">Latest <span>Projects</span></h2>
+
+        <div class="portfolio-container">
+            <div class="portfolio-box">
+                <img src="Assets/news page.png" alt="Project 1">
+                <div class="portfolio-layer">
+                    <h4>News website</h4>
+                    <p>Built a full-stack News Website with real-time updates, responsive design, and dynamic filtering.
+                        Integrated NewsAPI, Node.js, and MongoDB to deliver a seamless, user-friendly news experience.
+                    </p>
+                    <a href="https://github.com/Shadan0786/news_website" target="_blank"><i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="Assets/readyride.png" alt="Project 2">
+                <div class="portfolio-layer">
+                    <h4>Ready Ride</h4>
+                    <p>A full-stack reservation platform powered by Node.js and Express.js. Built with Vanilla JS, it
+                        offers a responsive "cyber-dark" interface for real-time car availability and secure booking,
+                        prioritizing speed and scalable code over heavy frameworks.</p>
+                    <a href="https://github.com/Shadan0786/ReadyRode" target="_blank"><i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me!</span></h2>
+
+        <form action="#">
+            <div class="input-box">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+            </div>
+            <div class="input-box">
+                <input type="number" placeholder="Mobile Number">
+                <input type="text" placeholder="Email Subject">
+            </div>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2026 by YourName | All Rights Reserved.</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#Home"><i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
