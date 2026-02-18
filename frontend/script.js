@@ -12,7 +12,7 @@ contactForm.addEventListener('submit', async (e) => {
         message: contactForm.querySelector('textarea').value
     };
 
-    const response = await fetch('http://localhost:3000/contact', {
+    const response = await fetch('https://cyan-style-portfolio.onrender.com/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
