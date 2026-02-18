@@ -29,12 +29,20 @@ app.post('/contact', async (req, res) => {
         text: `From: ${name}\nEmail: ${email}\nPhone: ${number}\n\nMessage: ${message}`
     };
 
+    // try {
+    //     await transporter.sendMail(mailOptions);
+    //     res.status(200).send({ message: 'Success' });
+    // } catch (error) {
+    //     res.status(500).send({ message: 'Failed to send' });
+    // }
     try {
         await transporter.sendMail(mailOptions);
-        res.status(200).send({ message: 'Success' });
+        res.status(200).json({ message: "Success!" });
     } catch (error) {
-        res.status(500).send({ message: 'Failed to send' });
+        console.error("Detailed Error:", error); // This will now show up in Render logs!
+        res.status(500).json({ error: error.message });
     }
+
 });
 
 const PORT = process.env.PORT || 3000;
