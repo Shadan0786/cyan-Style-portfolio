@@ -2,68 +2,56 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+
 const app = express();
 
-// 1. Improved CORS Configuration
+// 1. Force CORS to accept your Netlify URL
 app.use(cors({
     origin: 'https://shadanaliportfolio.netlify.app',
-    methods: ['POST', 'GET', 'OPTIONS'],
-    credentials: true
+    methods: ['POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
 }));
 
 app.use(express.json());
 
-// 2. Transporter with IPv4 focus
+// 2. Configure Transporter using Port 587 (More reliable on Render)
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
-    secure: false, 
+    secure: false, // TLS
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
     tls: {
-        rejectUnauthorized: false,
-        minVersion: 'TLSv1.2'
+        rejectUnauthorized: false // Bypasses local certificate issues
     }
 });
 
-// Non-blocking verification
-transporter.verify((error) => {
-    if (error) {
-        console.log("Email Service Status: ❌ Not Ready");
-        console.error(error);
-    } else {
-        console.log("Email Service Status: ✅ Ready");
-    }
-});
-
+// 3. The Contact Route
 app.post('/contact', async (req, res) => {
     const { name, email, number, subject, message } = req.body;
-
-    // Basic validation to prevent crashes on empty bodies
-    if (!email || !message) {
-        return res.status(400).json({ error: "Missing required fields" });
-    }
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
         replyTo: email,
         to: process.env.EMAIL_USER,
-        subject: `New Portfolio Message: ${subject}`,
-        text: `From: ${name}\nEmail: ${email}\nPhone: ${number}\n\nMessage: ${message}`
+        subject: `Portfolio: ${subject}`,
+        text: `Name: ${name}\nEmail: ${email}\nPhone: ${number}\n\n${message}`
     };
 
     try {
         await transporter.sendMail(mailOptions);
-        return res.status(200).json({ message: "Success!" });
+        return res.status(200).json({ success: true });
     } catch (error) {
-        console.error("Mail Error:", error);
-        return res.status(500).json({ error: "Server could not send email." });
+        console.error("SMTP Error:", error.message);
+        // We send a 500 JSON response so CORS doesn't break
+        return res.status(500).json({ error: "Mail failed, but server is alive." });
     }
 });
 
+// 4. Bind to 0.0.0.0 (Required for Render)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server active on port ${PORT}`);
 });
