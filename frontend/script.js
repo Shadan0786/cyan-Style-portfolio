@@ -55,3 +55,29 @@ contactForm.addEventListener('submit', async (e) => {
         }
     }
 });
+
+// --- Hamburger Menu Logic ---
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('nav');
+
+menuIcon.onclick = () => {
+    // Toggle the 'fa-x' icon (if you want the bars to turn into an X)
+    menuIcon.classList.toggle('fa-xmark'); 
+    navbar.classList.toggle('active');
+};
+
+// Close menu when a link is clicked (so it doesn't stay open on top of content)
+window.onscroll = () => {
+    menuIcon.classList.remove('fa-xmark');
+    navbar.classList.remove('active');
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const typed = new Typed('#element', {
+        strings: ['Software Developer', 'Full Stack Developer', 'Python Programmer'],
+        typeSpeed: 100,
+        backSpeed: 60,
+        backDelay: 1000,
+        loop: true
+    });
+});

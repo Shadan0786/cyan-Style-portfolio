@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +13,7 @@ body {
 
 
 header {
-    background-color:#1f242d;
+    background-color: #1f242d;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,6 +28,13 @@ header {
 
 .logo span {
     color: #0ef;
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
 }
 
 nav a {
@@ -127,7 +133,7 @@ nav a.active {
     justify-content: center;
     align-items: center;
     filter: drop-shadow(0 0 20px #0ef);
-    
+
 }
 
 .hero-img .hexagon img {
@@ -191,16 +197,7 @@ nav a.active {
 }
 
 
-@media (max-width: 768px) {
-    .about {
-        flex-direction: column;
-        text-align: center;
-    }
 
-    .about-content h2 {
-        text-align: center;
-    }
-}
 
 
 .skills-container {
@@ -211,7 +208,7 @@ nav a.active {
 }
 
 .skill-card {
-    background: #323946; 
+    background: #323946;
     padding: 3rem 2rem;
     border-radius: 2rem;
     text-align: center;
@@ -279,7 +276,7 @@ nav a.active {
 
 .portfolio-box:hover img {
     transform: scale(1.1);
-  
+
 }
 
 .portfolio-box .portfolio-layer {
@@ -335,7 +332,7 @@ nav a.active {
     min-height: auto;
     padding-bottom: 7rem;
     background: #1f242d;
-   
+
 }
 
 .contact h2 {
@@ -371,12 +368,12 @@ nav a.active {
 
 .contact form .input-box input {
     width: 49%;
-  
+
 }
 
 .contact form textarea {
     resize: none;
-   
+
 }
 
 .contact form .btn {
@@ -418,8 +415,190 @@ nav a.active {
 }
 
 
+/* Styling the blinking cursor */
+#element {
+    color: #0ef !important;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-content h2 {
+        text-align: center;
+    }
+}
+
 @media (max-width: 768px) {
     .contact form .input-box input {
         width: 100%;
+    }
+}
+
+/* Mobile styles for the navigation */
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+        /* Show icon on mobile */
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: #1f242d;
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        display: none;
+        /* Hide by default */
+    }
+
+    nav.active {
+        display: block;
+        /* Show when toggled */
+    }
+
+    nav a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        text-align: center;
+    }
+}
+
+/* --- MEDIA QUERIES --- */
+
+/* For Tablets and Small Laptops */
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 991px) {
+    header {
+        padding: 2rem 3%;
+    }
+
+    section {
+        padding: 5rem 3% 2rem;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        /* Image moves to top */
+        height: auto;
+        padding-top: 10rem;
+    }
+
+    .hero-content h1 {
+        font-size: 5rem;
+    }
+
+    .hero-img .hexagon {
+        width: 300px;
+        height: 340px;
+        margin-bottom: 3rem;
+    }
+
+    .portfolio {
+        height: auto;
+        padding-bottom: 7rem;
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 768px) {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #1f242d;
+        z-index: 1000;
+        padding: 1.5rem 5%;
+    }
+
+    nav {
+        display: none;
+        /* Recommended: Add a hamburger menu later */
+    }
+
+    .heading {
+        font-size: 3.5rem;
+    }
+
+    .hero {
+        padding-top: 12rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-content h3 {
+        font-size: 1.8rem;
+    }
+
+    .about {
+        flex-direction: column;
+        height: auto;
+        padding: 5rem 5%;
+    }
+
+    .about-img .hexagon-container {
+        width: 250px;
+        height: 280px;
+    }
+
+    .about-content h2 {
+        text-align: center;
+    }
+
+    .about-content p {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+        /* Single column for skills */
+    }
+
+    .portfolio-container {
+        grid-template-columns: 1fr;
+        /* Single column for projects */
+        padding: 0 5%;
+    }
+
+    .contact form .input-box input {
+        width: 100%;
+    }
+
+    .footer {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-text p {
+        font-size: 1.2rem;
+    }
+}
+
+/* For Very Small Devices */
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+
+    .hero-img .hexagon {
+        width: 220px;
+        height: 250px;
     }
 }
