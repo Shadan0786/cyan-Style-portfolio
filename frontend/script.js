@@ -4,10 +4,13 @@ contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Show a "Sending..." state to the user
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerText;
-    submitBtn.innerText = "Sending...";
-    submitBtn.disabled = true;
+    const submitBtn = contactForm.querySelector('.btn');
+    let originalBtnText = "Submit";
+    if (submitBtn) {
+        originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "Sending...";
+        submitBtn.disabled = true;
+    }
 
     const data = {
         name: contactForm.querySelector('input[placeholder="Full Name"]').value,
