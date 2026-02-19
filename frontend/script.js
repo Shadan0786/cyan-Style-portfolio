@@ -3,8 +3,8 @@ const contactForm = document.querySelector('form');
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Show a "Sending..." state to the user
-    const submitBtn = contactForm.querySelector('.btn');
+    // 1. Button Feedback
+    const submitBtn = contactForm.querySelector('.btn') || contactForm.querySelector('button');
     let originalBtnText = "Submit";
     if (submitBtn) {
         originalBtnText = submitBtn.innerText;
@@ -12,6 +12,7 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.disabled = true;
     }
 
+    // 2. Data Collection
     const data = {
         name: contactForm.querySelector('input[placeholder="Full Name"]').value,
         email: contactForm.querySelector('input[placeholder="Email Address"]').value,
@@ -30,22 +31,27 @@ contactForm.addEventListener('submit', async (e) => {
             body: JSON.stringify(data)
         });
 
-        const result = await response.json();
+        // 3. Robust JSON Parsing
+        const contentType = response.headers.get("content-type");
+        let result = {};
+        if (contentType && contentType.includes("application/json")) {
+            result = await response.json();
+        }
 
-        if (response.ok) {
+        if (response.ok && result.success) {
             alert("Message Sent Successfully!");
             contactForm.reset();
         } else {
-            // This catches 500 errors from the server
-            alert(`Error: ${result.error || "Something went wrong!"}`);
+            // Displays specific error from Resend or Server
+            alert(`Error: ${result.error || "The server is having trouble sending the mail."}`);
         }
     } catch (error) {
-        // This catches Network errors, CORS blocks, or Server timeouts
         console.error("Fetch error:", error);
-        alert("Could not connect to the server. It might be waking up—please try again in 30 seconds.");
+        alert("Server is waking up (this can take 30-60s on Render). Please try one more time!");
     } finally {
-        // Re-enable the button
-        submitBtn.innerText = originalBtnText;
-        submitBtn.disabled = false;
+        if (submitBtn) {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        }
     }
 });
