@@ -3,22 +3,22 @@ const contactForm = document.querySelector('form');
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // 1. Button Feedback
     const submitBtn = contactForm.querySelector('.btn') || contactForm.querySelector('button');
     let originalBtnText = "Submit";
+    
     if (submitBtn) {
         originalBtnText = submitBtn.innerText;
         submitBtn.innerText = "Sending...";
         submitBtn.disabled = true;
     }
 
-    // 2. Data Collection
+    // .trim() added to clean up accidental spaces
     const data = {
-        name: contactForm.querySelector('input[placeholder="Full Name"]').value,
-        email: contactForm.querySelector('input[placeholder="Email Address"]').value,
-        number: contactForm.querySelector('input[placeholder="Mobile Number"]').value,
-        subject: contactForm.querySelector('input[placeholder="Email Subject"]').value,
-        message: contactForm.querySelector('textarea').value
+        name: contactForm.querySelector('input[placeholder="Full Name"]').value.trim(),
+        email: contactForm.querySelector('input[placeholder="Email Address"]').value.trim(),
+        number: contactForm.querySelector('input[placeholder="Mobile Number"]').value.trim(),
+        subject: contactForm.querySelector('input[placeholder="Email Subject"]').value.trim(),
+        message: contactForm.querySelector('textarea').value.trim()
     };
 
     try {
@@ -31,23 +31,23 @@ contactForm.addEventListener('submit', async (e) => {
             body: JSON.stringify(data)
         });
 
-        // 3. Robust JSON Parsing
         const contentType = response.headers.get("content-type");
         let result = {};
         if (contentType && contentType.includes("application/json")) {
             result = await response.json();
         }
 
+        // Logic matches the new server.js res.status(200).json({ success: true })
         if (response.ok && result.success) {
-            alert("Message Sent Successfully!");
+            alert("✅ Message Sent Successfully!");
             contactForm.reset();
         } else {
-            // Displays specific error from Resend or Server
-            alert(`Error: ${result.error || "The server is having trouble sending the mail."}`);
+            alert(`❌ Error: ${result.error || "The server received the request but failed to send the email."}`);
         }
     } catch (error) {
         console.error("Fetch error:", error);
-        alert("Server is waking up (this can take 30-60s on Render). Please try one more time!");
+        // Better messaging for Render Free Tier users
+        alert("⏳ Server is waking up... Render's free tier takes about 30 seconds to start. Please wait a moment and click Submit again.");
     } finally {
         if (submitBtn) {
             submitBtn.innerText = originalBtnText;
