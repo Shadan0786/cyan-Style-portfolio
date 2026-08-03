@@ -74,7 +74,7 @@ window.onscroll = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const typed = new Typed('#element', {
-        strings: ['Software Developer', 'Full Stack Developer', 'Python Programmer'],
+        strings: ['Software Developer', 'Full Stack Developer', 'MERN Stack Developer'],
         typeSpeed: 100,
         backSpeed: 60,
         backDelay: 1000,
