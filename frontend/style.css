@@ -255,7 +255,7 @@ nav a.active {
 
 .portfolio-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
     align-items: center;
     gap: 2.5rem;
     padding: 0 9%;
